@@ -1,0 +1,29 @@
+<div class="jumbotron mt-3">
+    <h2>Componente Atributos</h2>
+    <hr>
+    <hr>
+
+    
+    <h4><u>[ngStyle]</u></h4>    
+    <button class="btn btn-info my-3" (click)="estado1=!estado1">Cambiar Color de Fondo (Estilos)</button>
+    <p [ngStyle]="{'color':'white', 'background-color': estado1?'green':'red', 'padding': '10px', 'border-radius':'10px'}">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi tenetur nam ut perspiciatis sed corporis id quo ullam similique, nobis, eum consequatur reprehenderit nulla ipsa. Ipsam dolorum temporibus quos nam.
+    </p>
+    <hr>
+
+    <h4><u>[ngClass]</u></h4>    
+    <button class="btn btn-info my-3" (click)="estado2=!estado2">Cambiar Color de Fondo (Clases)</button>
+    <p [ngClass]="{'alert': true, 'alert-success': estado2, 'alert-danger': !estado2}">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi tenetur nam ut perspiciatis sed corporis id quo ullam similique, nobis, eum consequatur reprehenderit nulla ipsa. Ipsam dolorum temporibus quos nam.
+    </p>
+    <hr>
+
+    <h4><u>Directivas personalizadas</u></h4>
+    
+
+    <p style="color: white;" [appResaltar]="'blue'" [colorBase]="'magenta'">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eum recusandae debitis numquam fugit ex dignissimos at quod quas natus odit, praesentium, eos maxime saepe maiores dolorem dolor hic accusamus.
+    </p>
+
+</div>
+

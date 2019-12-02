@@ -1,0 +1,110 @@
+<div class="jumbotron mt-3">
+    <h2>Componente Formularios</h2>
+    <hr>
+    <hr>
+
+    <h4><u>Formulario Template Driven</u></h4>
+    <br>
+
+    <form>
+
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input class="form-control" id="nombre" type="text" name="nombre" [(ngModel)]="formu.nombre">
+        </div>
+
+        <div class="form-group">
+            <label for="apellido">Apellido</label>
+            <input class="form-control" id="apellido" type="text" name="apellido" [(ngModel)]="formu.apellido">
+        </div>
+
+        <div class="form-group">
+            <label for="edad">Edad</label>
+            <input class="form-control" id="edad" type="number" name="edad" [(ngModel)]="formu.edad">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control" id="email" type="email" name="email" [(ngModel)]="formu.email">
+        </div>
+
+        <div class="form-group">
+            <label for="comentarios">Comentarios</label>
+            <textarea class="form-control" name="comentarios" id="comentarios" cols="30" rows="10"
+                [(ngModel)]="formu.comentarios"></textarea>
+        </div>
+
+        <button class="btn btn-success my-3" (click)="enviar()">Enviar</button>
+
+    </form>
+
+    <div *ngIf="camposNoValidos" class="alert alert-danger">
+        <h2>Campos no válidos</h2>
+    </div>
+
+
+    <hr>
+    <h4><u>Reactive Form</u></h4>
+
+    <form [formGroup]="f" autocomplete="off">
+
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input class="form-control" id="nombre" type="text" formControlName="nombre">
+        </div>
+
+        <div *ngIf="f.controls.nombre.errors && f.controls.nombre.dirty" class="alert alert-danger">
+            <div *ngIf="f.controls.nombre.errors.required">Este campo es requerido</div>
+            
+            <div *ngIf="f.controls.nombre.errors.minlength">La cantidad mínima de caracteres es {{getCantMinima()}}</div>
+            
+            <div *ngIf="f.controls.nombre.errors.maxlength">La cantidad máxima de caracteres es {{f.controls.nombre.errors.maxlength.requiredLength}}</div>
+
+            <div *ngIf="f.controls.nombre.errors.conEspacios">No se permiten espacios intermedios en este campo</div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="apellido">Apellido</label>
+            <input class="form-control" id="apellido" type="text" formControlName="apellido">
+        </div>
+
+        <div class="form-group">
+            <label for="edad">Edad</label>
+            <input class="form-control" id="edad" type="number" formControlName="edad">
+        </div>
+
+        <div formGroupName="contacto">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input class="form-control" id="email" type="email" formControlName="email">
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Telefono</label>
+                <input class="form-control" id="telefono" type="telefono" formControlName="telefono">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="comentarios">Comentarios</label>
+            <textarea class="form-control" formControlName="comentarios" id="comentarios" cols="30"
+                rows="10"></textarea>
+        </div>
+
+        <button class="btn btn-success my-3" [disabled]="!f.valid" (click)="enviarFReactive()">Enviar</button>
+
+    </form>
+
+    <hr>
+
+    <p><u>Estado del campo nombre del formulario</u></p>
+    <pre style="color:white;">{{ f.controls.nombre.errors | json }}</pre>
+
+    <hr>
+    <p><u>Datos del formulario</u></p>
+    <pre style="color:white;">{{ f.value | json }}</pre>
+
+
+
+</div>
